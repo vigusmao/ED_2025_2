@@ -53,30 +53,30 @@ public class RetanguloDePalavras {
     }
 
     private boolean eh_prefixo(String prefixo, int tamanho_alvo) {
-        if (tamanho_alvo >= this.palavrasPorTamanho.size()) {
-            return false;
-        }
-        List<String> lista = this.palavrasPorTamanho.get(tamanho_alvo);
-        if (lista == null) {
-            return false;
-        }
-
-        for (String palavra : lista) {
-            if (palavra.startsWith(prefixo)) {
-                return true;
-            }
-        }
-        return false;
-
-//        if (tamanho_alvo >= this.triePorTamanho.size()) {
+//        if (tamanho_alvo >= this.palavrasPorTamanho.size()) {
 //            return false;
 //        }
-//        Trie trie = this.triePorTamanho.get(tamanho_alvo);
-//        if (trie == null) {
+//        List<String> lista = this.palavrasPorTamanho.get(tamanho_alvo);
+//        if (lista == null) {
 //            return false;
 //        }
 //
-//        return trie.temPrefixo(prefixo);
+//        for (String palavra : lista) {
+//            if (palavra.startsWith(prefixo)) {
+//                return true;
+//            }
+//        }
+//        return false;
+
+        if (tamanho_alvo >= this.triePorTamanho.size()) {
+            return false;
+        }
+        Trie trie = this.triePorTamanho.get(tamanho_alvo);
+        if (trie == null) {
+            return false;
+        }
+
+        return trie.temPrefixo(prefixo);
     }
 
     private boolean backtrack(
@@ -152,7 +152,7 @@ public class RetanguloDePalavras {
         List<String> listaPalavras = lerPalavras(
                 "words_alpha.txt");
 
-        int k = 6;
+        int k = 5;
 
         RetanguloDePalavras solver = new RetanguloDePalavras(listaPalavras);
 
